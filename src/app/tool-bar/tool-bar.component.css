@@ -1,0 +1,39 @@
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--dark-accent);
+}
+
+.new-button {
+    height: 30px;
+    box-sizing: border-box;
+    background: var(--accent-1) url("../../../public/add_sign.png") no-repeat left 10px center;
+    padding: 8px 20px 8px 40px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin: 15px 40px;
+}
+
+.view-tools {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.visible-stars-button {
+    height: 30px;
+    box-sizing: border-box;
+    background: white url("../../../public/star-eye.png") no-repeat left 10px center;
+    padding: 8px 20px 8px 40px;
+    border-radius: 10px;
+    margin: 15px 40px;
+    font-size: 14px;
+}
+
+@media (min-width: 1500px) {
+    .toolbar {
+        padding-right: calc((100vw - 1500px) / 2);
+        padding-left: calc((100vw - 1500px) / 2);
+    }
+}

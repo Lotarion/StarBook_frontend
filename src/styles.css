@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+:root {
+    --dark: #1b2122;
+    --dark-accent: #40565c;
+    --odd-color: #a1aace;
+    --accent-1: #83d2e3;
+    --accent-2: #b2cbd1;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: var(--dark);
+}
