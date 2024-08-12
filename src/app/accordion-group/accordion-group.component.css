@@ -1,0 +1,23 @@
+section {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+section .head {
+    background-color: var(--dark-accent);
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #666;
+    box-sizing: border-box;
+}
+
+section .body {
+    width: 100%;
+    padding: 10px;
+}
+
+section .body.hidden {
+    display: none;
+}

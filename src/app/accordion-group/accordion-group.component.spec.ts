@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ToolBarComponent} from './tool-bar.component';
+import {AccordionGroupComponent} from './accordion-group.component';
 
-describe('ToolBarComponent', () => {
-    let component: ToolBarComponent;
-    let fixture: ComponentFixture<ToolBarComponent>;
+describe('AccordionGroupComponent', () => {
+    let component: AccordionGroupComponent;
+    let fixture: ComponentFixture<AccordionGroupComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ToolBarComponent]
+            imports: [AccordionGroupComponent]
         })
             .compileComponents();
 
-        fixture = TestBed.createComponent(ToolBarComponent);
+        fixture = TestBed.createComponent(AccordionGroupComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
