@@ -1,8 +1,0 @@
-<section>
-    <div class="head" (click)="toggle.emit()">
-        {{ title }}
-    </div>
-    <div class="body" [ngClass]="{'hidden': !opened}">
-        <ng-content></ng-content>
-    </div>
-</section>

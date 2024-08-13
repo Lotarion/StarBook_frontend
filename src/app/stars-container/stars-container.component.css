@@ -1,10 +1,34 @@
-section {
-    padding: 10px;
+.heading {
+    display: flex;
+    box-sizing: border-box;
+    border-radius: 10px 10px 0 0;
+    background-color: var(--accent-1);
+    color: black;
+    font-size: 20px;
+    width: 100%;
+    padding: 10px 60px 10px 20px;
 }
 
-@media (min-width: 1500px) {
-    section {
-        padding-right: calc((100vw - 1500px) / 2);
-        padding-left: calc((100vw - 1500px) / 2);
-    }
+.stat-names {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    width: 100%;
+    font-size: 16px
+}
+
+.stat-name {
+    padding-left: 20px;
+    width: 150px;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 23px;
+}
+
+.footing {
+    box-sizing: border-box;
+    border-radius: 0 0 10px 10px;
+    background-color: var(--dark-accent);
+    width: 100%;
+    padding: 5px;
 }

@@ -1,1 +1,32 @@
-<p>star-entry works!</p>
+<section>
+    <div class="head" (click)="toggle.emit()">
+        <div class="name">{{ star.name }}</div>
+        <div class="short-stats" [ngClass]="{'hidden': opened}">
+            <div class="stat">{{ star.right_ascension.toFixed(4) }}</div>
+            <div class="stat">{{ star.declination.toFixed(4) }}</div>
+            <div class="stat">{{ star.spectral_class }}</div>
+            <div class="stat">{{ (star.absolute_magnitude !== -1) ? star.absolute_magnitude.toFixed(4) : "Unknown" }}
+            </div>
+        </div>
+    </div>
+    <div class="body" [ngClass]="{'hidden': !opened}">
+        <ul>
+            <li>Right ascension: {{ star.right_ascension.toFixed(4) }}</li>
+            <li>Declination: {{ star.declination.toFixed(4) }}</li>
+            <li>Diameter: {{ star.diameter !== -1 ? star.diameter : "Unknown" }}</li>
+            <li>Mass: {{ star.mass !== -1 ? star.mass : "Unknown" }}</li>
+            <li>Visible size: {{ star.visible_size !== -1 ? star.visible_size : "Unknown" }}</li>
+            <li>Distance: {{ star.distance !== -1 ? star.distance : "Unknown" }}</li>
+            <li>Spectral class: {{ star.spectral_class }}</li>
+            <li>Absolute magnitude: {{ star.absolute_magnitude !== -1 ? star.absolute_magnitude : "Unknown" }}</li>
+        </ul>
+        <div class="options">
+            <button class="option delete-button">
+                Delete
+            </button>
+            <button class="option edit-button">
+                Edit
+            </button>
+        </div>
+    </div>
+</section>

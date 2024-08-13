@@ -8,6 +8,7 @@
 :root {
     --dark: #1b2122;
     --dark-accent: #40565c;
+    --dark-accent-2: #2E3C3F;
     --odd-color: #a1aace;
     --accent-1: #83d2e3;
     --accent-2: #b2cbd1;
@@ -18,7 +19,6 @@ html, body {
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: "Liberation Sans", sans-serif;
     background-color: var(--dark);
 }
