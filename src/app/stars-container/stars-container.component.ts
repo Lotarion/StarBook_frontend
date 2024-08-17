@@ -1,6 +1,5 @@
-import {AfterContentInit, Component, ContentChildren, QueryList} from '@angular/core';
+import {Component} from '@angular/core';
 import {StarEntryComponent} from "../star-entry/star-entry.component";
-import {AccordionGroupComponent} from "../accordion-group/accordion-group.component";
 
 @Component({
     selector: 'app-stars-container',
@@ -11,30 +10,10 @@ import {AccordionGroupComponent} from "../accordion-group/accordion-group.compon
     templateUrl: './stars-container.component.html',
     styleUrl: './stars-container.component.css'
 })
-export class StarsContainerComponent implements AfterContentInit {
-    @ContentChildren(StarEntryComponent)
-    groups!: QueryList<StarEntryComponent>;
-
-    ngAfterContentInit(): void {
-        this.groups.toArray().forEach(group => {
-            group.toggle.subscribe(() => {
-                if (!group.opened) {
-                    this.openGroup(group)
-                } else {
-                    this.closeGroup(group)
-                }
-            })
-        })
-    }
-
-    openGroup(group: AccordionGroupComponent) {
-        // close other groups
-        this.groups.toArray().forEach((t) => t.opened = false);
-        // open current group
-        group.opened = true;
-    }
-
-    closeGroup(group: AccordionGroupComponent) {
-        group.opened = false;
-    }
+export class StarsContainerComponent {
+    /**
+     * there once was logic for opening and closing groups, but generating entries through AsyncPipe broke it. To
+     * resolve this, I had to move the logic to the entries themselves. That means that multiple entries can be open at
+     * the same time, but it's better than not being able to open entries at all.
+     */
 }

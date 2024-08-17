@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgClass} from "@angular/common";
 import {Star} from "../star";
 
@@ -13,9 +13,9 @@ import {Star} from "../star";
 })
 export class StarEntryComponent {
     @Input() opened = false;
-    @Output() toggle: EventEmitter<any> = new EventEmitter<any>();
-
     @Input() star!: Star;
 
-
+    ToggleEntry(): void {
+        this.opened = !this.opened;
+    }
 }

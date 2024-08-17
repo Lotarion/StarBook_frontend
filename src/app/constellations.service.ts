@@ -15,17 +15,17 @@ export class ConstellationsService {
 
     read_constellations(pagination: Pagination) {
         let parameters = addPaginationToHttpParams(pagination)
-        return this.http.get<PaginatedOutput>(`${api_base}constellation`, {params: parameters})
+        return this.http.get<PaginatedOutput>(`${api_base}constellation/`, {params: parameters})
     }
 
     read_constellations_by_name(name: string, pagination: Pagination) {
         let parameters = addPaginationToHttpParams(pagination)
         parameters = parameters.append("name", name)
-        return this.http.get<PaginatedOutput>(`${api_base}constellation/by_name`, {params: parameters})
+        return this.http.get<PaginatedOutput>(`${api_base}constellation/by_name/`, {params: parameters})
     }
 
     read_constellation(constellation_id: string) {
-        return this.http.get<Constellation>(`${api_base}constellation/${constellation_id}`)
+        return this.http.get<Constellation>(`${api_base}constellation/${constellation_id}/`)
     }
 
     create_constellation(constellation: ConstellationCreate) {
@@ -37,6 +37,6 @@ export class ConstellationsService {
     }
 
     delete_constellation(constellation_id: string) {
-        return this.http.delete<Constellation>(`${api_base}constellation/${constellation_id}`)
+        return this.http.delete<Constellation>(`${api_base}constellation/${constellation_id}/`)
     }
 }

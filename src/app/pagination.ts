@@ -9,3 +9,8 @@ export interface PaginatedOutput {
     total_objects: number
     objects: Array<any>
 }
+
+export var DummyOutput: PaginatedOutput = {
+    "total_objects": 0,
+    "objects": []
+}

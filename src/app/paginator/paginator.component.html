@@ -1,0 +1,13 @@
+<div class="paginator">
+    <select #perpage (change)="UpdatePerPage(perpage.value)">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+    </select>
+    <div class="results">Showing {{ start }} - {{ end }} of {{ total_objects }} stars</div>
+    <button type="button" class="input" (click)="FirstPage()" [disabled]="isFirstPage">First page</button>
+    <button type="button" class="input" (click)="PreviousPage()" [disabled]="isFirstPage">Prev. page</button>
+    <button type="button" class="input" (click)="NextPage()" [disabled]="isLastPage">Next page</button>
+    <button type="button" class="input" (click)="LastPage()" [disabled]="isLastPage">Last page</button>
+</div>

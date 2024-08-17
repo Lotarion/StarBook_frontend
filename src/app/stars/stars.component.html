@@ -1,5 +1,6 @@
 <section>
+    <app-paginator [total_objects]="Bundle.total_objects" (onPaginationChange)="UpdatePage($event)"></app-paginator>
     <app-stars-container>
-        <app-star-entry *ngFor="let star of StarList" [star]="star"></app-star-entry>
+        <app-star-entry *ngFor="let star of (Bundle$|async)?.objects" [star]="star"></app-star-entry>
     </app-stars-container>
 </section>

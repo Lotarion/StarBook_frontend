@@ -1,5 +1,5 @@
 <section>
-    <div class="head" (click)="toggle.emit()">
+    <div class="head" (click)="ToggleEntry()">
         <div class="name">{{ star.name }}</div>
         <div class="short-stats" [ngClass]="{'hidden': opened}">
             <div class="stat">{{ star.right_ascension.toFixed(4) }}</div>
