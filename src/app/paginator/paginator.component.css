@@ -1,26 +1,56 @@
 .input {
-    border: 2px solid var(--accent-1);
-    background-color: var(--dark);
-    color: white;
-    border-radius: 10px;
+    background: var(--dark);
     padding: 10px;
     margin: 0 10px;
-    text-align: center;
+    width: 40px;
+    height: 40px;
 }
 
-.input:disabled {
-    border: 2px solid var(--dark-accent);
-    color: var(--dark-accent);
+.firstpage {
+    background: url("../../../public/firstpage_enabled.png") no-repeat center center;
 }
+
+.firstpage:disabled {
+    background: url("../../../public/firstpage_disabled.png") no-repeat center center;
+}
+
+.prevpage {
+    background: url("../../../public/prevpage_enabled.png") no-repeat center center;
+}
+
+.prevpage:disabled {
+    background: url("../../../public/prevpage_disabled.png") no-repeat center center;
+}
+
+.nextpage {
+    background: url("../../../public/nextpage_enabled.png") no-repeat center center;
+}
+
+.nextpage:disabled {
+    background: url("../../../public/nextpage_disabled.png") no-repeat center center;
+}
+
+.lastpage {
+    background: url("../../../public/lastpage_enabled.png") no-repeat center center;
+}
+
+.lastpage:disabled {
+    background: url("../../../public/lastpage_disabled.png") no-repeat center center;
+}
+
 
 select {
     border: none;
-    background-color: var(--accent-1);
-    color: black;
-    border-radius: 10px;
     padding: 10px 20px;
-    margin: 0 10px;
     text-align: center;
+    font-size: 14px;
+}
+
+.per-page-select {
+    background-color: var(--accent-1);
+    border-radius: 10px;
+    margin: 0 10px;
+    color: black;
 }
 
 .paginator {
@@ -36,4 +66,24 @@ select {
     padding: 10px 20px;
     text-align: center;
     color: white;
+}
+
+.sorting {
+    background: white url(../../../public/sorting.png) no-repeat left 10px center;
+    padding: 10px 10px 10px 40px;
+    border-radius: 10px 0 0 10px;
+    border-right: var(--dark-accent) 1px solid;
+}
+
+.sorting-direction {
+    height: 38px;
+    width: 35px;
+    box-sizing: border-box;
+    border-radius: 0 10px 10px 0;
+    align-items: center;
+}
+
+.sort-direction-img {
+    width: 60%;
+    height: 60%;
 }

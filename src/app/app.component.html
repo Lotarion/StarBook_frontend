@@ -4,14 +4,14 @@
             <a class="logo">
 
             </a>
-            <form class="search">
-                <input class="search-input" type="search">
-                <input class="search-button" type="button" value="Search">
+            <form class="search" [formGroup]="searchForm" (ngSubmit)="SetSearchQuery()">
+                <input class="search-input" type="search" formControlName="search" [disabled]="!canSearch">
+                <input class="search-button" type="submit" value="Search" [disabled]="!canSearch">
             </form>
         </div>
         <app-tool-bar></app-tool-bar>
     </header>
     <section>
-        <app-stars></app-stars>
+        <app-stars [searchQuery]="searchQuery"></app-stars>
     </section>
 </main>

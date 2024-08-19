@@ -1,12 +1,14 @@
 import {Component, Input, OnChanges, output, SimpleChanges} from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {Pagination} from "../pagination";
 
 @Component({
     selector: 'app-paginator',
     standalone: true,
     imports: [
-        NgForOf
+        NgForOf,
+        NgOptimizedImage,
+        NgIf
     ],
     templateUrl: './paginator.component.html',
     styleUrl: './paginator.component.css'
@@ -28,14 +30,15 @@ export class PaginatorComponent implements OnChanges {
 
     constructor() {
         this.UpdateStartEnd()
+        this.UpdatePageStatus()
     }
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['total_objects']) {
             this.UpdateTotalPages()
             this.UpdateStartEnd()
+            this.UpdatePageStatus()
         }
-        console.log(changes)
     }
 
     FirstPage() {
@@ -72,6 +75,11 @@ export class PaginatorComponent implements OnChanges {
         this.UpdatePagination()
     }
 
+    UpdateSortBy(value: string) {
+        this.pagination.sorting_parameter = value
+        this.UpdatePagination()
+    }
+
     UpdateTotalPages() {
         this.total_pages = Math.ceil(this.total_objects / this.pagination.per_page)
     }
@@ -90,5 +98,14 @@ export class PaginatorComponent implements OnChanges {
     UpdatePageStatus() {
         this.isFirstPage = this.pagination.page == 0;
         this.isLastPage = this.pagination.page == this.total_pages - 1;
+    }
+
+    OnSortDirectionChange() {
+        if (this.pagination.sorting_direction == 'ascending') {
+            this.pagination.sorting_direction = 'descending'
+        } else {
+            this.pagination.sorting_direction = 'ascending'
+        }
+        this.UpdatePagination()
     }
 }
