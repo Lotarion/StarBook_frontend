@@ -1,0 +1,22 @@
+.logo {
+    height: 60px;
+    color: white;
+    background-color: var(--dark-accent);
+    flex: 0 0 200px;
+    text-align: center;
+}
+
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    border-bottom: 1px solid var(--accent-2);
+}
+
+
+@media (min-width: 1500px) {
+    .top-bar {
+        padding-right: calc((100vw - 1500px) / 2);
+        padding-left: calc((100vw - 1500px) / 2);
+    }
+}

@@ -1,17 +1,3 @@
 <main>
-    <header>
-        <div class="top-bar">
-            <a class="logo">
-
-            </a>
-            <form class="search" [formGroup]="searchForm" (ngSubmit)="SetSearchQuery()">
-                <input class="search-input" type="search" formControlName="search" [disabled]="!canSearch">
-                <input class="search-button" type="submit" value="Search" [disabled]="!canSearch">
-            </form>
-        </div>
-        <app-tool-bar></app-tool-bar>
-    </header>
-    <section>
-        <app-stars [searchQuery]="searchQuery"></app-stars>
-    </section>
+    <router-outlet></router-outlet>
 </main>

@@ -1,0 +1,12 @@
+<header>
+    <app-top-bar>
+        <form class="search" [formGroup]="searchForm" (ngSubmit)="SetSearchQuery()">
+            <input class="search-input" type="search" formControlName="search" [disabled]="!canSearch">
+            <input class="search-button" type="submit" value="Search" [disabled]="!canSearch">
+        </form>
+    </app-top-bar>
+    <app-tool-bar></app-tool-bar>
+</header>
+<section>
+    <app-stars [searchQuery]="searchQuery"></app-stars>
+</section>

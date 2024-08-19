@@ -1,0 +1,45 @@
+<header>
+    <app-top-bar></app-top-bar>
+</header>
+<section class="details-container">
+    <h1 class="form-label" *ngIf="star_id == 'new'">Record a new star</h1>
+    <h1 class="form-label" *ngIf="star_id != 'new'">Edit star {{ star.name }}</h1>
+    <form class="star-form" [formGroup]="starForm">
+        <label for="name">
+            <div class="param-label">Name:</div>
+            <input id="name" type="text" formControlName="name">
+        </label>
+        <label for="right_ascension">
+            <div class="param-label">Right Ascension:</div>
+            <input id="right_ascension" type="number" formControlName="right_ascension">
+        </label>
+        <label for="declination">
+            <div class="param-label">Declination:</div>
+            <input id="declination" type="number" formControlName="declination">
+        </label>
+        <label for="diameter">
+            <div class="param-label">Diameter:</div>
+            <input id="diameter" type="number" formControlName="diameter">
+        </label>
+        <label for="mass">
+            <div class="param-label">Mass:</div>
+            <input id="mass" type="number" formControlName="mass">
+        </label>
+        <label for="visible_size">
+            <div class="param-label">Visible size:</div>
+            <input id="visible_size" type="number" formControlName="visible_size">
+        </label>
+        <label for="distance">
+            <div class="param-label">Distance:</div>
+            <input id="distance" type="number" formControlName="distance">
+        </label>
+        <label for="absolute_magnitude">
+            <div class="param-label">Absolute magnitude:</div>
+            <input id="absolute_magnitude" type="number" formControlName="absolute_magnitude">
+        </label>
+        <label for="spectral_class">
+            <div class="param-label">Spectral class:</div>
+            <input id="spectral_class" type="text" formControlName="spectral_class">
+        </label>
+    </form>
+</section>
