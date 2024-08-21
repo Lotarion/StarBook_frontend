@@ -1,5 +1,6 @@
 <div *ngIf="dialogVisible" class="dialog-background">
     <section class="dialog-content">
+        <div class="dialog-header">{{ header }}</div>
         <div>
             <ng-content select="[body]"></ng-content>
         </div>

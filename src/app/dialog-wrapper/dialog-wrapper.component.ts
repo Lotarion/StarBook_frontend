@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -11,6 +11,8 @@ import {NgIf} from "@angular/common";
     styleUrl: './dialog-wrapper.component.css'
 })
 export class DialogWrapperComponent {
+    @Input('header') header!: string;
+
     dialogVisible: boolean = false;
 
     open() {

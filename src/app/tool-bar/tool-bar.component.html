@@ -1,7 +1,10 @@
 <section class="toolbar">
     <input class="new-button" type="button" value="New" [routerLink]="['/edit/new']">
     <div class="view-tools">
-
-        <input class="visible-stars-button" type="button" value="Visible Stars">
+        <input class="view-tool filtering-button" [class]="filterButtonStyle" type="button"
+               value="Filtering" (click)="onFilterButtonClick()">
+        <app-set-filter #setFilterDialog></app-set-filter>
+        <input class="view-tool visible-stars-button" [class]="visibleStarsButtonStyle" type="button"
+               value="Visible Stars" [disabled]="filterSet">
     </div>
 </section>

@@ -1,0 +1,11 @@
+<app-dialog-wrapper #wrapper header="Deleting {{obj_type}}">
+    <section body>
+        <div class="dialog-text">
+            Are you sure you want to delete this {{ obj_type }}? This cannot be undone.
+        </div>
+    </section>
+    <section footer>
+        <input type="button" class="dialog-button confirm" value="Confirm" (click)="confirm()">
+        <input type="button" class="dialog-button cancel" value="Cancel" (click)="cancel()">
+    </section>
+</app-dialog-wrapper>

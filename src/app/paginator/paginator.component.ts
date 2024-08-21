@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, output, SimpleChanges} from '@angular/core';
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {KeyValuePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {Pagination} from "../pagination";
+import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-paginator',
@@ -8,7 +9,9 @@ import {Pagination} from "../pagination";
     imports: [
         NgForOf,
         NgOptimizedImage,
-        NgIf
+        NgIf,
+        KeyValuePipe,
+        FormsModule
     ],
     templateUrl: './paginator.component.html',
     styleUrl: './paginator.component.css'
@@ -27,6 +30,15 @@ export class PaginatorComponent implements OnChanges {
         sorting_parameter: 'name',
         sorting_direction: 'descending'
     };
+    SORTING_PARAMS = {
+        name: 'Name',
+        diameter: 'Diameter',
+        mass: 'Mass',
+        visible_size: 'Apparent magnitude',
+        absolute_magnitude: 'Absolute magnitude',
+        spectral_class: 'Spectral class',
+        distance: 'Distance',
+    }
 
     constructor() {
         this.UpdateStartEnd()

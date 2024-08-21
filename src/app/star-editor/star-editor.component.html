@@ -9,7 +9,7 @@
             <div class="param-label">Name:</div>
             <input id="name" type="text" formControlName="name">
         </label>
-        <div class="error-msg" *ngIf="starForm.controls['name'].errors?.['required'] && submitted">
+        <div class="error-msg" *ngIf="starForm.controls['name'].errors?.['required'] && submit_pressed">
             * Name is required
         </div>
         <label for="right_ascension">
@@ -18,7 +18,7 @@
             °, 0 — 360
         </label>
         <div class="error-msg" *ngIf="(starForm.controls['right_ascension'].errors?.['min'] ||
-            starForm.controls['right_ascension'].errors?.['max']) && submitted">
+            starForm.controls['right_ascension'].errors?.['max']) && submit_pressed">
             * Right ascension must be between 0° and 360°
         </div>
         <label for="declination">
@@ -27,11 +27,11 @@
             °, -90 — 90
         </label>
         <div class="error-msg" *ngIf="(starForm.controls['declination'].errors?.['min'] ||
-            starForm.controls['declination'].errors?.['max']) && submitted">
+            starForm.controls['declination'].errors?.['max']) && submit_pressed">
             * Declination must be between -90° and 90°
         </div>
         <div class="error-msg" *ngIf="(starForm.controls['right_ascension'].errors?.['required'] ||
-            starForm.controls['declination'].errors?.['required']) && submitted">
+            starForm.controls['declination'].errors?.['required']) && submit_pressed">
             * Coordinates are required
         </div>
         <label for="diameter">

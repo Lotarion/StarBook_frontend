@@ -27,7 +27,7 @@ export interface Star extends StarInStorage {
 export interface StarFilter {
     filter_by: string
     filter_string?: string
-    filter_range?: [number, number]
+    filter_range: [number, number]
 }
 
 export interface EarthPosition {

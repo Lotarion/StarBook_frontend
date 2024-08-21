@@ -1,17 +1,12 @@
 <div class="paginator">
     <select class="sorting" #sortparam (change)="UpdateSortBy(sortparam.value)">
-        <option value="name" selected>Name</option>
-        <option value="absolute_magnitude">Absolute magnitude</option>
-        <option value="diameter">Diameter</option>
-        <option value="mass">Mass</option>
-        <option value="visible_size">Visible size</option>
-        <option value="distance">Distance</option>
+        <option *ngFor="let param of SORTING_PARAMS | keyvalue" [value]="param.key">{{ param.value }}</option>
     </select>
     <button class="sorting-direction" (click)="OnSortDirectionChange()">
         <img class="sort-direction-img" *ngIf="pagination.sorting_direction == 'ascending'"
-             src="/direction-ascending.png">
+             src="/direction-ascending.png" alt="direction: ascending">
         <img class="sort-direction-img" *ngIf="pagination.sorting_direction == 'descending'"
-             src="/direction-descending.png">
+             src="/direction-descending.png" alt="direction: ascending">
     </button>
     <select class="per-page-select" #perpage (change)="UpdatePerPage(perpage.value)">
         <option value="5">5</option>
@@ -21,8 +16,8 @@
     </select>
     <div class="results" *ngIf="total_objects > 1">Showing {{ start }} - {{ end }} of {{ total_objects }} stars</div>
     <div class="results" *ngIf="total_objects == 1"> Showing {{ total_objects }} star</div>
-    <button type="button" class="input firstpage" (click)="FirstPage()" [disabled]="isFirstPage"></button>
-    <button type="button" class="input prevpage" (click)="PreviousPage()" [disabled]="isFirstPage"></button>
-    <button type="button" class="input nextpage" (click)="NextPage()" [disabled]="isLastPage"></button>
-    <button type="button" class="input lastpage" (click)="LastPage()" [disabled]="isLastPage"></button>
+    <input type="button" class="input firstpage" (click)="FirstPage()" [disabled]="isFirstPage">
+    <input type="button" class="input prevpage" (click)="PreviousPage()" [disabled]="isFirstPage">
+    <input type="button" class="input nextpage" (click)="NextPage()" [disabled]="isLastPage">
+    <input type="button" class="input lastpage" (click)="LastPage()" [disabled]="isLastPage">
 </div>

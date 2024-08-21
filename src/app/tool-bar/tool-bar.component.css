@@ -1,16 +1,18 @@
 .toolbar {
     display: flex;
     flex-direction: row;
-    background-color: var(--dark-accent);
+    background-color: var(--dark-accent-2);
 }
 
 .new-button {
-    height: 30px;
+    height: 40px;
     box-sizing: border-box;
     background: var(--accent-1) url("../../../public/add_sign.png") no-repeat left 10px center;
-    padding: 8px 20px 8px 40px;
+    padding: 1px 40px 0 50px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
     margin: 15px 40px;
 }
 
@@ -21,14 +23,44 @@
     justify-content: end;
 }
 
-.visible-stars-button {
-    height: 30px;
+.view-tools .view-tool {
+    height: 40px;
     box-sizing: border-box;
-    background: white url(../../../public/star-eye.png) no-repeat left 10px center;
-    padding: 8px 20px 8px 40px;
+    padding: 1px 40px 0 50px;
     border-radius: 10px;
     margin: 15px 40px;
-    font-size: 14px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.view-tools .view-tool:disabled {
+    border: 2px solid var(--dark-accent);
+    color: var(--dark-accent);
+}
+
+.filter-off {
+    background: white url(../../../public/filter.png) no-repeat left 10px center;
+}
+
+.filter-on {
+    background: var(--accent-1) url(../../../public/filter.png) no-repeat left 10px center;
+}
+
+.filtering-button:disabled {
+    background: var(--dark-accent-2) url(../../../public/filter-disabled.png) no-repeat left 10px center;
+}
+
+.visible-stars-off {
+    background: white url(../../../public/star-eye.png) no-repeat left 10px center;
+}
+
+.visible-stars-on {
+    background: var(--accent-1) url(../../../public/star-eye.png) no-repeat left 10px center;
+}
+
+.visible-stars-button:disabled {
+    background: var(--dark-accent-2) url(../../../public/star-eye-disabled.png) no-repeat left 10px center;
 }
 
 @media (min-width: 1500px) {

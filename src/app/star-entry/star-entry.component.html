@@ -15,17 +15,14 @@
             <li>Diameter: {{ star.diameter ? star.diameter.toFixed(4) : "Unknown" }}</li>
             <li>Mass: {{ star.mass ? star.mass.toFixed(4) : "Unknown" }}</li>
             <li>Apparent magnitude: {{ star.visible_size ? star.visible_size.toFixed(4) : "Unknown" }}</li>
-            <li>Distance: {{ star.distance ? star.distance.toFixed(4) : "Unknown" }}</li>
-            <li>Spectral class: {{ star.spectral_class ? star.spectral_class : "Unknown" }}</li>
             <li>Absolute magnitude: {{ star.absolute_magnitude ? star.absolute_magnitude.toFixed(4) : "Unknown" }}</li>
+            <li>Spectral class: {{ star.spectral_class ? star.spectral_class : "Unknown" }}</li>
+            <li>Distance: {{ star.distance ? star.distance.toFixed(4) : "Unknown" }}</li>
         </ul>
         <div class="options">
-            <button class="option delete-button">
-                Delete
-            </button>
-            <button class="option edit-button" [routerLink]="['/edit', star.id]">
-                Edit
-            </button>
+            <input type="button" class="option delete-button" value="Delete" (click)="onDeleteButtonClick()">
+            <app-delete-entry-dialog #deletedialog [star_id]="star.id"></app-delete-entry-dialog>
+            <input type="button" class="option edit-button" value="Edit" [routerLink]="['/edit', star.id]">
         </div>
     </div>
 </section>

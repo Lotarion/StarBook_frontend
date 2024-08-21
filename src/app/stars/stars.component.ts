@@ -1,11 +1,13 @@
-import {Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {StarsContainerComponent} from "../stars-container/stars-container.component";
 import {StarEntryComponent} from "../star-entry/star-entry.component";
 import {StarsService} from "../stars.service";
 import {DummyOutput, PaginatedOutput, Pagination} from "../pagination";
-import {Observable, share} from "rxjs";
+import {Observable, share, Subscription} from "rxjs";
 import {PaginatorComponent} from "../paginator/paginator.component";
+import {StarFilter} from "../star";
+import {FilterService} from "../filter.service";
 
 @Component({
     selector: 'app-stars',
@@ -21,7 +23,6 @@ import {PaginatorComponent} from "../paginator/paginator.component";
     styleUrl: './stars.component.css'
 })
 export class StarsComponent implements OnChanges {
-    starService: StarsService = inject(StarsService);
     Bundle$!: Observable<PaginatedOutput>;
     Bundle: PaginatedOutput = DummyOutput;
     pagination: Pagination = {
@@ -31,9 +32,21 @@ export class StarsComponent implements OnChanges {
         sorting_direction: 'descending'
     };
     @Input() searchQuery!: string;
+    filterSubscription!: Subscription;
+    filter!: StarFilter
 
-    constructor() {
+    constructor(public starService: StarsService, filterService: FilterService) {
         this.readStars(this.pagination)
+        this.filterSubscription = filterService.filter$.subscribe(filter => {
+            if (filter) {
+                this.filter = filter;
+                if (filter.filter_by != '') {
+                    this.readStarsByFilter(filter, this.pagination)
+                } else {
+                    this.UpdatePage()
+                }
+            }
+        })
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -49,6 +62,11 @@ export class StarsComponent implements OnChanges {
 
     readStarsByName(name: string, pagination: Pagination) {
         this.Bundle$ = this.starService.read_stars_by_name(name, pagination).pipe(share())
+        this.BundleSubscribe()
+    }
+
+    readStarsByFilter(filter: StarFilter, pagination: Pagination) {
+        this.Bundle$ = this.starService.read_stars_by_filter(filter, pagination).pipe(share())
         this.BundleSubscribe()
     }
 
@@ -69,6 +87,8 @@ export class StarsComponent implements OnChanges {
     UpdatePage() {
         if (this.searchQuery) {
             this.readStarsByName(this.searchQuery, this.pagination)
+        } else if (this.filter.filter_by != '') {
+            this.readStarsByFilter(this.filter, this.pagination)
         } else {
             this.readStars(this.pagination)
         }

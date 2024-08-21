@@ -22,7 +22,7 @@ import {DialogService} from "../dialog.service";
     styleUrl: './star-editor.component.css'
 })
 export class StarEditorComponent {
-    submitted: boolean = false;
+    submit_pressed: boolean = false;
     star_id: string;
     star: Object = {
         name: '',
@@ -104,11 +104,20 @@ export class StarEditorComponent {
     }
 
     SubmitStar() {
-        this.submitted = true;
+        this.submit_pressed = true;
         if (!this.starForm.valid) {
             return;
         }
         this.star = this.starForm.getRawValue()
+        for (let prop in this.star) {
+            if (this.star.hasOwnProperty(prop)) {
+                // @ts-ignore
+                if (this.star[prop] == '') {
+                    // @ts-ignore
+                    this.star[prop] = null;
+                }
+            }
+        }
         if (this.star_id == "new") {
             // @ts-ignore
             let starCreate: StarCreate = this.star;
@@ -124,7 +133,7 @@ export class StarEditorComponent {
             })
         } else {
             // @ts-ignore
-            let starUpdate: StarUpdate = this.star
+            let starUpdate: StarUpdate = this.star;
             starUpdate.id = this.star_id;
             this.starsService.update_star(starUpdate).subscribe({
                 next: () => {
