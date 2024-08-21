@@ -1,0 +1,10 @@
+<div *ngIf="dialogVisible" class="dialog-background">
+    <section class="dialog-content">
+        <div>
+            <ng-content select="[body]"></ng-content>
+        </div>
+        <div class="dialog-footer">
+            <ng-content select="[footer]"></ng-content>
+        </div>
+    </section>
+</div>

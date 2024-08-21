@@ -25,7 +25,7 @@ export class PaginatorComponent implements OnChanges {
         page: 0,
         per_page: 10,
         sorting_parameter: 'name',
-        sorting_direction: 'ascending'
+        sorting_direction: 'descending'
     };
 
     constructor() {

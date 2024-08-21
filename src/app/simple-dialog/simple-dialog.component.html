@@ -1,0 +1,10 @@
+<div *ngIf="dialogVisible" class="dialog-background">
+    <section class="dialog-content">
+        <div class="dialog-title"> {{ config.title }}</div>
+        <div class="dialog-message">{{ config.message }}</div>
+        <div class="dialog-footer">
+            <button class="dialog-button confirm" (click)="close(true)">Confirm</button>
+            <button class="dialog-button cancel" *ngIf="config.cancelVisible" (click)="close(false)">Cancel</button>
+        </div>
+    </section>
+</div>

@@ -31,10 +31,16 @@ section {
 
 .stat {
     padding-left: 20px;
-    width: 150px;
+    width: 180px;
     text-align: left;
     vertical-align: middle;
+    box-sizing: border-box;
     line-height: 23px;
+}
+
+.num-stat {
+    text-align: right;
+    padding-right: 40px;
 }
 
 .body {

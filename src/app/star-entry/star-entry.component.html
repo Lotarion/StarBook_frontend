@@ -2,29 +2,28 @@
     <div class="head" (click)="ToggleEntry()">
         <div class="name">{{ star.name }}</div>
         <div class="short-stats" [ngClass]="{'hidden': opened}">
-            <div class="stat">{{ star.right_ascension.toFixed(4) }}</div>
-            <div class="stat">{{ star.declination.toFixed(4) }}</div>
-            <div class="stat">{{ star.spectral_class }}</div>
-            <div class="stat">{{ (star.absolute_magnitude !== -1) ? star.absolute_magnitude.toFixed(4) : "Unknown" }}
-            </div>
+            <div class="stat num-stat">{{ star.right_ascension.toFixed(4) }}</div>
+            <div class="stat num-stat">{{ star.declination.toFixed(4) }}</div>
+            <div class="stat">{{ star.spectral_class ? star.spectral_class : "Unknown" }}</div>
+            <div class="stat">{{ star.visible_size ? star.absolute_magnitude?.toFixed(4) : "Unknown" }}</div>
         </div>
     </div>
     <div class="body" [ngClass]="{'hidden': !opened}">
         <ul>
             <li>Right ascension: {{ star.right_ascension.toFixed(4) }}</li>
             <li>Declination: {{ star.declination.toFixed(4) }}</li>
-            <li>Diameter: {{ star.diameter !== -1 ? star.diameter : "Unknown" }}</li>
-            <li>Mass: {{ star.mass !== -1 ? star.mass : "Unknown" }}</li>
-            <li>Visible size: {{ star.visible_size !== -1 ? star.visible_size : "Unknown" }}</li>
-            <li>Distance: {{ star.distance !== -1 ? star.distance : "Unknown" }}</li>
-            <li>Spectral class: {{ star.spectral_class }}</li>
-            <li>Absolute magnitude: {{ star.absolute_magnitude !== -1 ? star.absolute_magnitude : "Unknown" }}</li>
+            <li>Diameter: {{ star.diameter ? star.diameter.toFixed(4) : "Unknown" }}</li>
+            <li>Mass: {{ star.mass ? star.mass.toFixed(4) : "Unknown" }}</li>
+            <li>Apparent magnitude: {{ star.visible_size ? star.visible_size.toFixed(4) : "Unknown" }}</li>
+            <li>Distance: {{ star.distance ? star.distance.toFixed(4) : "Unknown" }}</li>
+            <li>Spectral class: {{ star.spectral_class ? star.spectral_class : "Unknown" }}</li>
+            <li>Absolute magnitude: {{ star.absolute_magnitude ? star.absolute_magnitude.toFixed(4) : "Unknown" }}</li>
         </ul>
         <div class="options">
             <button class="option delete-button">
                 Delete
             </button>
-            <button class="option edit-button">
+            <button class="option edit-button" [routerLink]="['/edit', star.id]">
                 Edit
             </button>
         </div>

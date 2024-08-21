@@ -1,12 +1,14 @@
 import {Component, Input} from '@angular/core';
 import {NgClass} from "@angular/common";
 import {Star} from "../star";
+import {RouterLink} from "@angular/router";
 
 @Component({
     selector: 'app-star-entry',
     standalone: true,
     imports: [
-        NgClass
+        NgClass,
+        RouterLink
     ],
     templateUrl: './star-entry.component.html',
     styleUrl: './star-entry.component.css'

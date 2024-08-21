@@ -3,35 +3,55 @@
 </header>
 <section class="details-container">
     <h1 class="form-label" *ngIf="star_id == 'new'">Record a new star</h1>
-    <h1 class="form-label" *ngIf="star_id != 'new'">Edit star {{ star.name }}</h1>
-    <form class="star-form" [formGroup]="starForm">
+    <h1 class="form-label" *ngIf="star_id != 'new'">Edit star: {{ starForm.controls['name'].value }}</h1>
+    <form class="star-form" [formGroup]="starForm" (ngSubmit)="SubmitStar()">
         <label for="name">
             <div class="param-label">Name:</div>
             <input id="name" type="text" formControlName="name">
         </label>
+        <div class="error-msg" *ngIf="starForm.controls['name'].errors?.['required'] && submitted">
+            * Name is required
+        </div>
         <label for="right_ascension">
             <div class="param-label">Right Ascension:</div>
             <input id="right_ascension" type="number" formControlName="right_ascension">
+            °, 0 — 360
         </label>
+        <div class="error-msg" *ngIf="(starForm.controls['right_ascension'].errors?.['min'] ||
+            starForm.controls['right_ascension'].errors?.['max']) && submitted">
+            * Right ascension must be between 0° and 360°
+        </div>
         <label for="declination">
             <div class="param-label">Declination:</div>
             <input id="declination" type="number" formControlName="declination">
+            °, -90 — 90
         </label>
+        <div class="error-msg" *ngIf="(starForm.controls['declination'].errors?.['min'] ||
+            starForm.controls['declination'].errors?.['max']) && submitted">
+            * Declination must be between -90° and 90°
+        </div>
+        <div class="error-msg" *ngIf="(starForm.controls['right_ascension'].errors?.['required'] ||
+            starForm.controls['declination'].errors?.['required']) && submitted">
+            * Coordinates are required
+        </div>
         <label for="diameter">
             <div class="param-label">Diameter:</div>
             <input id="diameter" type="number" formControlName="diameter">
+            D<sub>☉</sub>
         </label>
         <label for="mass">
             <div class="param-label">Mass:</div>
             <input id="mass" type="number" formControlName="mass">
+            M<sub>☉</sub>
         </label>
         <label for="visible_size">
-            <div class="param-label">Visible size:</div>
+            <div class="param-label">Apparent magnitude:</div>
             <input id="visible_size" type="number" formControlName="visible_size">
         </label>
         <label for="distance">
             <div class="param-label">Distance:</div>
             <input id="distance" type="number" formControlName="distance">
+            l./y.
         </label>
         <label for="absolute_magnitude">
             <div class="param-label">Absolute magnitude:</div>
@@ -41,5 +61,9 @@
             <div class="param-label">Spectral class:</div>
             <input id="spectral_class" type="text" formControlName="spectral_class">
         </label>
+        <div class="options">
+            <button class="option save-button" type="submit">Save</button>
+            <button class="option cancel-button" type="button" (click)="cancelDialog()">Cancel</button>
+        </div>
     </form>
 </section>

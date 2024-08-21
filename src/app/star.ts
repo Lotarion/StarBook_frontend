@@ -2,13 +2,13 @@ interface StarBase {
     name: string
     right_ascension: number
     declination: number
-    diameter: number
-    mass: number
-    visible_size: number
-    distance: number
-    absolute_magnitude: number
-    spectral_class: string
-    constellation_id: string
+    diameter: number | null
+    mass: number | null
+    visible_size: number | null
+    distance: number | null
+    absolute_magnitude: number | null
+    spectral_class: string | null
+    constellation_id: string | null
 }
 
 export interface StarCreate extends StarBase {
@@ -33,5 +33,5 @@ export interface StarFilter {
 export interface EarthPosition {
     latitude: number
     longitude: number
-    timestamp: number
+    timestamp?: number
 }
