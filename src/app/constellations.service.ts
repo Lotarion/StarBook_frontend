@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {PaginatedOutput, Pagination} from "./pagination";
+import {PaginatedOutput} from "./pagination";
 import {Constellation, ConstellationCreate, ConstellationUpdate} from "./constellation";
 import {api_base} from "./constants";
-import {addPaginationToHttpParams} from "./utils";
 
 @Injectable({
     providedIn: 'root'
@@ -13,15 +12,8 @@ export class ConstellationsService {
     constructor(private http: HttpClient) {
     }
 
-    read_constellations(pagination: Pagination) {
-        let parameters = addPaginationToHttpParams(pagination)
-        return this.http.get<PaginatedOutput>(`${api_base}constellation/`, {params: parameters})
-    }
-
-    read_constellations_by_name(name: string, pagination: Pagination) {
-        let parameters = addPaginationToHttpParams(pagination)
-        parameters = parameters.append("name", name)
-        return this.http.get<PaginatedOutput>(`${api_base}constellation/by_name/`, {params: parameters})
+    read_constellations() {
+        return this.http.get<PaginatedOutput>(`${api_base}constellation/`)
     }
 
     read_constellation(constellation_id: string) {
