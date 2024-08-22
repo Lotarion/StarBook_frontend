@@ -85,6 +85,7 @@ export class EditConstellationDialogComponent {
     }
 
     cancel() {
+        this.onConstellationChange.emit()
         this.wrapper.close()
     }
 }

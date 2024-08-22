@@ -9,6 +9,7 @@ import {PaginatorComponent} from "../paginator/paginator.component";
 import {EarthPosition, StarFilter} from "../star";
 import {FilterService} from "../filter.service";
 import {EarthPositionService} from "../earth-position.service";
+import {ConstellationsService} from "../constellations.service";
 
 @Component({
     selector: 'app-stars',
@@ -38,9 +39,18 @@ export class StarsComponent implements OnChanges {
     positionSubscription!: Subscription;
     position!: EarthPosition
 
-    constructor(public starService: StarsService, filterService: FilterService, earthPositionService: EarthPositionService) {
+    constructor(public starService: StarsService,
+                filterService: FilterService,
+                earthPositionService: EarthPositionService,
+                constellationsService: ConstellationsService
+    ) {
         this.readStars(this.pagination)
-
+        constellationsService.read_constellations().subscribe({
+            next: data => {
+                constellationsService.set_cache(data);
+            },
+            error: error => console.error(error)
+        })
         this.filterSubscription = filterService.filter$.subscribe(filter => {
             if (filter) {
                 this.filter = filter;
