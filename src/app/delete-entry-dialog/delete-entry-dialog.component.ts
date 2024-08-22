@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {DialogWrapperComponent} from "../dialog-wrapper/dialog-wrapper.component";
 import {StarsService} from "../stars.service";
 import {ConstellationsService} from "../constellations.service";
@@ -18,6 +18,7 @@ export class DeleteEntryDialogComponent {
     @ViewChild('wrapper') wrapper!: DialogWrapperComponent;
     @Input() star_id?: string;
     @Input() constellation_id?: string;
+    @Output() onEntryDeletion = new EventEmitter();
     obj_type!: string;
 
     constructor(private starsService: StarsService, private constellationsService: ConstellationsService) {
@@ -37,10 +38,12 @@ export class DeleteEntryDialogComponent {
             this.starsService.delete_star(this.star_id).subscribe({
                 next: star => {
                     console.log(star);
+                    this.onEntryDeletion.emit()
                     new Snackbar('The star was deleted successfully.', snackbar_msg)
                 },
                 error: error => {
                     console.error(error);
+                    this.onEntryDeletion.emit()
                     new Snackbar('An error occurred when trying to delete the star', snackbar_error)
                 }
             })
@@ -48,17 +51,18 @@ export class DeleteEntryDialogComponent {
             this.constellationsService.delete_constellation(this.constellation_id).subscribe({
                 next: constellation => {
                     console.log(constellation);
+                    this.onEntryDeletion.emit()
                     new Snackbar('The constellation was deleted successfully.', snackbar_msg)
                 },
                 error: error => {
                     console.error(error);
+                    this.onEntryDeletion.emit()
                     new Snackbar('An error occurred when trying to delete the constellation', snackbar_error)
                 }
             })
         }
 
         this.wrapper.close();
-        window.location.reload();
     }
 
     cancel() {

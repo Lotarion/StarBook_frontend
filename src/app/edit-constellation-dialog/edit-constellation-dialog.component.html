@@ -1,0 +1,12 @@
+<app-dialog-wrapper #wrapper [header]="header">
+    <div body>
+        <div>
+            <input type="text" class="dialog-field" [(ngModel)]="name">
+            <div class="error-msg" *ngIf="name == '' && confirm_pressed">* Name is required</div>
+        </div>
+    </div>
+    <div footer>
+        <input class="dialog-button confirm" type="button" value="Confirm" (click)="confirm()">
+        <input class="dialog-button cancel" type="button" value="Cancel" (click)="cancel()">
+    </div>
+</app-dialog-wrapper>

@@ -1,0 +1,15 @@
+<section class="picker-container">
+    <select #dropdown id="constellation" [(ngModel)]="constellation_id" (change)="onSelectChange()">
+        <option value="" selected>-- None --</option>
+        <option value="new">-- New --</option>
+        <option *ngFor="let constellation of constellations" [ngValue]="constellation.id">{{ constellation.name }}
+        </option>
+    </select>
+    <input class="edit" type="button" value="Edit" *ngIf="constellation_id != ''" (click)="onEditConstellation()">
+    <app-edit-constellation-dialog #editConstellation [constellation_id]="constellation_id"
+                                   (onConstellationChange)="onConstellationMutation()"></app-edit-constellation-dialog>
+    <input class="delete" type="button" value="Delete" *ngIf="constellation_id != ''" (click)="onDeleteConstellation()">
+
+    <app-delete-entry-dialog #deleteConstellation [constellation_id]="constellation_id"
+                             (onEntryDeletion)="onConstellationMutation()"></app-delete-entry-dialog>
+</section>

@@ -22,7 +22,8 @@
         </ul>
         <div class="options">
             <input type="button" class="option delete-button" value="Delete" (click)="onDeleteButtonClick()">
-            <app-delete-entry-dialog #deleteDialog [star_id]="star.id"></app-delete-entry-dialog>
+            <app-delete-entry-dialog #deleteDialog [star_id]="star.id"
+                                     (onEntryDeletion)="onDeletion()"></app-delete-entry-dialog>
             <input type="button" class="option edit-button" value="Edit" [routerLink]="['/edit', star.id]">
         </div>
     </div>

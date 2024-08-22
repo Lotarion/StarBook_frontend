@@ -1,5 +1,7 @@
 .dialog-text {
     color: white;
+    font-size: 14px;
+    line-height: 18px;
 }
 
 .dialog-button {

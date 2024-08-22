@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Star} from "../star";
 import {Router, RouterLink} from "@angular/router";
 import {DeleteEntryDialogComponent} from "../delete-entry-dialog/delete-entry-dialog.component";
@@ -21,6 +21,7 @@ export class StarEntryComponent {
     @ViewChild('deleteDialog') deleteDialog!: DeleteEntryDialogComponent;
     opened = false;
     @Input() star!: Star;
+    @Output() update = new EventEmitter();
     constellations: Constellation[] = [];
 
     constructor(public router: Router, public constellationsService: ConstellationsService) {
@@ -50,5 +51,9 @@ export class StarEntryComponent {
 
     onDeleteButtonClick() {
         this.deleteDialog.open()
+    }
+
+    onDeletion() {
+        this.update.emit();
     }
 }
