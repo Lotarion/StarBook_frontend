@@ -85,7 +85,9 @@ export class EditConstellationDialogComponent {
     }
 
     cancel() {
-        this.onConstellationChange.emit()
+        if (this.constellation_id == 'new') {
+            this.onConstellationChange.emit()
+        }
         this.wrapper.close()
     }
 }
