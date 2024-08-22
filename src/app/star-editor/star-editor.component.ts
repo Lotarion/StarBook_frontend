@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {StarsService} from "../stars.service";
 import {Star, StarCreate, StarUpdate} from "../star";

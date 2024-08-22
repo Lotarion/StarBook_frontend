@@ -57,7 +57,7 @@ export class EditConstellationDialogComponent {
         }
         if (this.constellation_id == 'new') {
             this.constellationsService.create_constellation({name: this.name}).subscribe({
-                next: data => {
+                next: () => {
                     this.onConstellationChange.emit()
                     new Snackbar('The constellation was created successfully.', snackbar_msg)
                 },
@@ -70,7 +70,7 @@ export class EditConstellationDialogComponent {
         } else {
             this.constellation.name = this.name;
             this.constellationsService.update_constellation(this.constellation).subscribe({
-                next: value => {
+                next: () => {
                     this.onConstellationChange.emit()
                     new Snackbar('The constellation was updated successfully.', snackbar_msg)
                 },

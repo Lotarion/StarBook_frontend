@@ -1,14 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild
-} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {DeleteEntryDialogComponent} from "../delete-entry-dialog/delete-entry-dialog.component";
 import {EditConstellationDialogComponent} from "../edit-constellation-dialog/edit-constellation-dialog.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
