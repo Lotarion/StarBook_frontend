@@ -42,10 +42,12 @@
     color: var(--dark-accent);
 }
 
+/*noinspection CssUnusedSymbol*/
 .filter-off {
     background: white url(/toolbar/filter.png) no-repeat left 10px center;
 }
 
+/*noinspection CssUnusedSymbol*/
 .filter-on {
     background: var(--accent-1) url(/toolbar/filter.png) no-repeat left 10px center;
 }
@@ -54,10 +56,12 @@
     background: var(--dark-accent-2) url(/toolbar/filter-disabled.png) no-repeat left 10px center;
 }
 
+/*noinspection CssUnusedSymbol*/
 .visible-stars-off {
     background: white url(/toolbar/star-eye.png) no-repeat left 10px center;
 }
 
+/*noinspection CssUnusedSymbol*/
 .visible-stars-on {
     background: var(--accent-1) url(/toolbar/star-eye.png) no-repeat left 10px center;
 }
