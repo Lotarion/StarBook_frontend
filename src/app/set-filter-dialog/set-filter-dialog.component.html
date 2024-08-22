@@ -1,0 +1,29 @@
+<app-dialog-wrapper #wrapper header="Set Filter">
+    <section body>
+        <label for="filter-by">
+            <div class="param-label">Filter by:</div>
+            <select class="filter-field" id="filter-by" [(ngModel)]="filter.filter_by">
+                <option *ngFor="let param of FILTER_PARAMS | keyvalue" [value]="param.key">{{ param.value }}</option>
+            </select>
+        </label>
+        <label for="filter-string" *ngIf="filter.filter_by == 'spectral_class'">
+            <div class="param-label">Filter for this spectral class (exact match):</div>
+            <input class="filter-field" id="filter-string" type="text" [(ngModel)]="filter.filter_string">
+        </label>
+        <!--the constellation selector for filtering will go here ( || filter.filter_by != 'constellation_id')-->
+        <label for="filter-range" *ngIf="filter.filter_by != 'spectral_class'">
+            <div class="param-label">Filter for this parameter range:</div>
+            <div id="filter-range">
+                <input class="filter-field" type="number" [(ngModel)]="filter.filter_range[0]"> —
+                <input class="filter-field" type="number" [(ngModel)]="filter.filter_range[1]">
+            </div>
+            <div *ngIf="filter.filter_range[0] > filter.filter_range[1] && confirm_pressed" class="error-msg">
+                *This is not a valid range
+            </div>
+        </label>
+    </section>
+    <section footer>
+        <input class="dialog-button confirm" type="button" value="Confirm" (click)="setFilter()">
+        <input class="dialog-button cancel" type="button" value="Cancel" (click)="cancel()">
+    </section>
+</app-dialog-wrapper>

@@ -6,7 +6,6 @@ import {StarFilter} from "./star";
     providedIn: 'root'
 })
 export class FilterService {
-    // @ts-ignore
     public filter = new BehaviorSubject<StarFilter>({
         filter_by: '',
         filter_range: [0, 0]
@@ -22,10 +21,8 @@ export class FilterService {
     }
 
     setFilter(filter: StarFilter) {
-        if (this.filter) {
-            this.filter.next(filter)
-            this.isFilterSet = !this.isFilterSet;
-            this.filterSet.next(this.isFilterSet);
-        }
+        this.filter.next(filter)
+        this.isFilterSet = !this.isFilterSet;
+        this.filterSet.next(this.isFilterSet);
     }
 }

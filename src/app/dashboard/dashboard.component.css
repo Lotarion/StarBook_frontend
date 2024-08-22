@@ -13,7 +13,7 @@ form {
     border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
-    background: var(--dark-accent) url("../../../public/search_glass.png") no-repeat right 15px center;
+    background: var(--dark-accent) url(/search_glass.png) no-repeat right 15px center;
     transition: 0.3s;
     outline: none;
     color: white;
@@ -24,7 +24,7 @@ form {
 }
 
 .search-input:disabled {
-    background-color: var(--dark);
+    background: var(--dark) url(/search_glass_disabled.png) no-repeat right 15px center;
     border: 1px solid var(--dark-accent);
 }
 

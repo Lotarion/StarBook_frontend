@@ -34,8 +34,8 @@ section {
     width: 180px;
     text-align: left;
     vertical-align: middle;
-    box-sizing: border-box;
     line-height: 23px;
+    box-sizing: border-box;
 }
 
 .num-stat {

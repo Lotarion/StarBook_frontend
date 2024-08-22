@@ -1,0 +1,25 @@
+<app-dialog-wrapper #wrapper header="Set Earth Positon">
+    <div body>
+        <form class="dialog-form" [formGroup]="earthPositionForm" (ngSubmit)="setEarthPosition()">
+            <label for="latitude">
+                <div class="param-label">Latitude</div>
+                <input class="dialog-field" type="number" id="latitude" formControlName="latitude">
+            </label>
+            <label for="longitude">
+                <div class="param-label">Longitude</div>
+                <input class="dialog-field" type="number" id="longitude" formControlName="longitude">
+            </label>
+            <label for="datetime-picker">
+                <div class="param-label"><i>Local</i> date and time</div>
+                <div class="field-container" id="datetime-picker">
+                    <input class="dialog-field date" type="date" dataformatas="yyyy-mm-dd" formControlName="date">
+                    <input class="dialog-field time" type="time" dataformatas="hh:mm" formControlName="time">
+                </div>
+            </label>
+        </form>
+    </div>
+    <div footer>
+        <input class="dialog-button confirm" type="button" value="Confirm" (click)="setEarthPosition()">
+        <input class="dialog-button cancel" type="button" value="Cancel" (click)="cancel()">
+    </div>
+</app-dialog-wrapper>

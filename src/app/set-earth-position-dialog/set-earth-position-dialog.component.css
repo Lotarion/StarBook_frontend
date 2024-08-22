@@ -1,28 +1,40 @@
-.filter-params {
+.dialog-form {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    gap: 10px
+    gap: 5px;
 }
 
-.filter-params label {
+label {
     color: white;
     font-size: 14px;
     display: flex;
     flex-direction: column;
-    white-space: nowrap;
     text-align: left;
     vertical-align: middle;
     line-height: 20px;
 }
 
-.filter-field {
+.field-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.dialog-field {
     padding: 10px;
     border-radius: 10px;
     background-color: var(--dark-accent);
     color: white;
 }
 
+.date {
+    border-radius: 10px 0 0 10px;
+}
+
+.time {
+    border-radius: 0 10px 10px 0;
+}
 
 .error-msg {
     font-size: 12px;
@@ -40,6 +52,7 @@
     margin: 0 10px;
     padding: 0 20px;
 }
+
 
 .confirm {
     background-color: var(--accent-1);

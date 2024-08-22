@@ -6,7 +6,7 @@ import {StarFilter} from "../star";
 import {FilterService} from "../filter.service";
 
 @Component({
-    selector: 'app-set-filter',
+    selector: 'app-set-filter-dialog',
     standalone: true,
     imports: [
         DialogWrapperComponent,
@@ -15,10 +15,10 @@ import {FilterService} from "../filter.service";
         NgForOf,
         NgIf
     ],
-    templateUrl: './set-filter.component.html',
-    styleUrl: './set-filter.component.css'
+    templateUrl: './set-filter-dialog.component.html',
+    styleUrl: './set-filter-dialog.component.css'
 })
-export class SetFilterComponent {
+export class SetFilterDialogComponent {
     @ViewChild('wrapper') wrapper!: DialogWrapperComponent;
     filter: StarFilter;
     confirm_pressed = false;

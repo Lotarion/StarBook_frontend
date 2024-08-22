@@ -7,35 +7,35 @@
 }
 
 .firstpage {
-    background: url("../../../public/firstpage_enabled.png") no-repeat center center;
+    background: url(/pagination/firstpage_enabled.png) no-repeat center center;
 }
 
 .firstpage:disabled {
-    background: url("../../../public/firstpage_disabled.png") no-repeat center center;
+    background: url(/pagination/firstpage_disabled.png) no-repeat center center;
 }
 
 .prevpage {
-    background: url("../../../public/prevpage_enabled.png") no-repeat center center;
+    background: url(/pagination/prevpage_enabled.png) no-repeat center center;
 }
 
 .prevpage:disabled {
-    background: url("../../../public/prevpage_disabled.png") no-repeat center center;
+    background: url(/pagination/prevpage_disabled.png) no-repeat center center;
 }
 
 .nextpage {
-    background: url("../../../public/nextpage_enabled.png") no-repeat center center;
+    background: url(/pagination/nextpage_enabled.png) no-repeat center center;
 }
 
 .nextpage:disabled {
-    background: url("../../../public/nextpage_disabled.png") no-repeat center center;
+    background: url(/pagination/nextpage_disabled.png) no-repeat center center;
 }
 
 .lastpage {
-    background: url("../../../public/lastpage_enabled.png") no-repeat center center;
+    background: url(/pagination/lastpage_enabled.png) no-repeat center center;
 }
 
 .lastpage:disabled {
-    background: url("../../../public/lastpage_disabled.png") no-repeat center center;
+    background: url(/pagination/lastpage_disabled.png) no-repeat center center;
 }
 
 
@@ -69,7 +69,7 @@ select {
 }
 
 .sorting {
-    background: white url(../../../public/sorting.png) no-repeat left 10px center;
+    background: white url(/pagination/sorting.png) no-repeat left 10px center;
     padding: 10px 10px 10px 40px;
     border-radius: 10px 0 0 10px;
     border-right: var(--dark-accent) 1px solid;

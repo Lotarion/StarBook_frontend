@@ -5,6 +5,7 @@ import {ToolBarComponent} from "../tool-bar/tool-bar.component";
 import {TopBarComponent} from "../top-bar/top-bar.component";
 import {FilterService} from "../filter.service";
 import {Subscription} from "rxjs";
+import {EarthPositionService} from "../earth-position.service";
 
 @Component({
     selector: 'app-dashboard',
@@ -25,21 +26,27 @@ export class DashboardComponent implements OnDestroy {
         search: new FormControl('')
     });
     filterSubscription: Subscription;
+    earthPositionSubscription: Subscription;
 
-    constructor(public filterService: FilterService) {
+    constructor(public filterService: FilterService, public earthPositionService: EarthPositionService) {
         this.filterSubscription = filterService.filterSet$.subscribe(filterSet => {
             this.toggleSearch(filterSet);
+        })
+        this.earthPositionSubscription = earthPositionService.positionSet$.subscribe(positionSet => {
+            this.toggleSearch(positionSet)
         })
     }
 
     ngOnDestroy() {
         this.filterSubscription.unsubscribe();
+        this.earthPositionSubscription.unsubscribe();
     }
 
     toggleSearch(isDisabled: boolean) {
         this.searchButtonDisabled = isDisabled
         if (isDisabled) {
             this.searchForm.get('search')?.setValue('')
+            this.searchQuery = ''
             this.searchForm.get('search')?.disable();
         } else {
             this.searchForm.get('search')?.enable();

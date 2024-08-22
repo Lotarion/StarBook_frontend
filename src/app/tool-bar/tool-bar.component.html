@@ -2,9 +2,10 @@
     <input class="new-button" type="button" value="New" [routerLink]="['/edit/new']">
     <div class="view-tools">
         <input class="view-tool filtering-button" [class]="filterButtonStyle" type="button"
-               value="Filtering" (click)="onFilterButtonClick()">
-        <app-set-filter #setFilterDialog></app-set-filter>
+               value="Filtering" [disabled]="earthPositionSet" (click)="onFilterButtonClick()">
+        <app-set-filter-dialog #setFilterDialog></app-set-filter-dialog>
         <input class="view-tool visible-stars-button" [class]="visibleStarsButtonStyle" type="button"
-               value="Visible Stars" [disabled]="filterSet">
+               value="Visible Stars" [disabled]="filterSet" (click)="onVisibleStarsButtonClick()">
+        <app-set-earth-position-dialog #setPositionDialog></app-set-earth-position-dialog>
     </div>
 </section>

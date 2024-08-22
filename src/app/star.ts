@@ -33,5 +33,6 @@ export interface StarFilter {
 export interface EarthPosition {
     latitude: number
     longitude: number
-    timestamp?: number
+    date: string
+    time: string
 }

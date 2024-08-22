@@ -4,9 +4,9 @@
     </select>
     <button class="sorting-direction" (click)="OnSortDirectionChange()">
         <img class="sort-direction-img" *ngIf="pagination.sorting_direction == 'ascending'"
-             src="/direction-ascending.png" alt="direction: ascending">
+             src="/pagination/direction-ascending.png" alt="direction: ascending">
         <img class="sort-direction-img" *ngIf="pagination.sorting_direction == 'descending'"
-             src="/direction-descending.png" alt="direction: ascending">
+             src="/pagination/direction-descending.png" alt="direction: ascending">
     </button>
     <select class="per-page-select" #perpage (change)="UpdatePerPage(perpage.value)">
         <option value="5">5</option>

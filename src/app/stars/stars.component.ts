@@ -6,8 +6,9 @@ import {StarsService} from "../stars.service";
 import {DummyOutput, PaginatedOutput, Pagination} from "../pagination";
 import {Observable, share, Subscription} from "rxjs";
 import {PaginatorComponent} from "../paginator/paginator.component";
-import {StarFilter} from "../star";
+import {EarthPosition, StarFilter} from "../star";
 import {FilterService} from "../filter.service";
+import {EarthPositionService} from "../earth-position.service";
 
 @Component({
     selector: 'app-stars',
@@ -32,16 +33,28 @@ export class StarsComponent implements OnChanges {
         sorting_direction: 'descending'
     };
     @Input() searchQuery!: string;
-    filterSubscription!: Subscription;
+    filterSubscription: Subscription;
     filter!: StarFilter
+    positionSubscription!: Subscription;
+    position!: EarthPosition
 
-    constructor(public starService: StarsService, filterService: FilterService) {
+    constructor(public starService: StarsService, filterService: FilterService, earthPositionService: EarthPositionService) {
         this.readStars(this.pagination)
         this.filterSubscription = filterService.filter$.subscribe(filter => {
             if (filter) {
                 this.filter = filter;
                 if (filter.filter_by != '') {
                     this.readStarsByFilter(filter, this.pagination)
+                } else {
+                    this.UpdatePage()
+                }
+            }
+        })
+        this.positionSubscription = earthPositionService.position$.subscribe(position => {
+            if (position) {
+                this.position = position;
+                if (position.time && position.date) {
+                    this.readStarsVisible(position, this.pagination)
                 } else {
                     this.UpdatePage()
                 }
@@ -70,6 +83,11 @@ export class StarsComponent implements OnChanges {
         this.BundleSubscribe()
     }
 
+    readStarsVisible(position: EarthPosition, pagination: Pagination) {
+        this.Bundle$ = this.starService.read_stars_visible(position, pagination).pipe(share())
+        this.BundleSubscribe()
+    }
+
     BundleSubscribe() {
         this.Bundle$.subscribe({
             next: value => {
@@ -89,6 +107,8 @@ export class StarsComponent implements OnChanges {
             this.readStarsByName(this.searchQuery, this.pagination)
         } else if (this.filter.filter_by != '') {
             this.readStarsByFilter(this.filter, this.pagination)
+        } else if (this.position && this.position.date != '' && this.position.time != '') {
+            this.readStarsVisible(this.position, this.pagination)
         } else {
             this.readStars(this.pagination)
         }

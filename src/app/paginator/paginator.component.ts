@@ -83,6 +83,7 @@ export class PaginatorComponent implements OnChanges {
 
     UpdatePerPage(value: string) {
         this.pagination.per_page = parseInt(value)
+        this.FirstPage()
         this.UpdateTotalPages()
         this.UpdatePagination()
     }

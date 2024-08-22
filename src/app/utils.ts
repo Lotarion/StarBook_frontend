@@ -26,8 +26,9 @@ export function addFilteringToHttpParams(filter: StarFilter, httpparams: HttpPar
 export function addEarthPositionToHttpParams(position: EarthPosition, httpparams: HttpParams = new HttpParams()) {
     httpparams = httpparams.append("latitude", position.latitude)
     httpparams = httpparams.append("longitude", position.longitude)
-    if (position.timestamp) {
-        httpparams = httpparams.append("timestamp", position.timestamp)
+    if (position.date != '' && position.time != '') {
+        httpparams = httpparams.append("date", position.date)
+        httpparams = httpparams.append("time", position.time)
     }
 
     return httpparams
