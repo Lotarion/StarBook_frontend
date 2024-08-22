@@ -8,14 +8,23 @@
         </label>
         <label for="filter-string" *ngIf="filter.filter_by == 'spectral_class'">
             <div class="param-label">Filter for this spectral class (exact match):</div>
-            <input class="filter-field" id="filter-string" type="text" [(ngModel)]="filter.filter_string">
+            <input class="filter-field" id="filter-string" type="text" maxlength="100"
+                   [(ngModel)]="filter.filter_string">
         </label>
-        <!--the constellation selector for filtering will go here ( || filter.filter_by != 'constellation_id')-->
-        <label for="filter-range" *ngIf="filter.filter_by != 'spectral_class'">
+        <label for="filter-select" *ngIf="filter.filter_by == 'constellation_id'">
+            <div class="param-label">Filter for a constellation</div>
+            <select class="filter-field" id="filter-select" [(ngModel)]="filter.filter_string">
+                <option *ngFor="let constellation of constellations"
+                        [value]="constellation.id">{{ constellation.name }}
+                </option>
+            </select>
+        </label>
+        <label for="filter-range"
+               *ngIf="filter.filter_by != 'spectral_class' && filter.filter_by != 'constellation_id'">
             <div class="param-label">Filter for this parameter range:</div>
             <div id="filter-range">
-                <input class="filter-field" type="number" [(ngModel)]="filter.filter_range[0]"> —
-                <input class="filter-field" type="number" [(ngModel)]="filter.filter_range[1]">
+                <input class="filter-field" type="number" [(ngModel)]="filter.filter_range[0]" maxlength="50"> —
+                <input class="filter-field" type="number" [(ngModel)]="filter.filter_range[1]" maxlength="50">
             </div>
             <div *ngIf="filter.filter_range[0] > filter.filter_range[1] && confirm_pressed" class="error-msg">
                 *This is not a valid range

@@ -18,10 +18,11 @@
             <li>Absolute magnitude: {{ star.absolute_magnitude ? star.absolute_magnitude.toFixed(4) : "Unknown" }}</li>
             <li>Spectral class: {{ star.spectral_class ? star.spectral_class : "Unknown" }}</li>
             <li>Distance: {{ star.distance ? star.distance.toFixed(4) : "Unknown" }}</li>
+            <li>Constellation: {{ star.constellation_id ? getConstellation(star.constellation_id) : "None" }}</li>
         </ul>
         <div class="options">
             <input type="button" class="option delete-button" value="Delete" (click)="onDeleteButtonClick()">
-            <app-delete-entry-dialog #deletedialog [star_id]="star.id"></app-delete-entry-dialog>
+            <app-delete-entry-dialog #deleteDialog [star_id]="star.id"></app-delete-entry-dialog>
             <input type="button" class="option edit-button" value="Edit" [routerLink]="['/edit', star.id]">
         </div>
     </div>

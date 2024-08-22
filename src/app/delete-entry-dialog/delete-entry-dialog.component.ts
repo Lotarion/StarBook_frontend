@@ -37,22 +37,22 @@ export class DeleteEntryDialogComponent {
             this.starsService.delete_star(this.star_id).subscribe({
                 next: star => {
                     console.log(star);
-                    new Snackbar('The ' + this.obj_type + ' was deleted successfully.', snackbar_msg)
+                    new Snackbar('The star was deleted successfully.', snackbar_msg)
                 },
                 error: error => {
                     console.error(error);
-                    new Snackbar('An error occurred when trying to delete the' + this.obj_type, snackbar_error)
+                    new Snackbar('An error occurred when trying to delete the star', snackbar_error)
                 }
             })
         } else if (this.constellation_id) {
             this.constellationsService.delete_constellation(this.constellation_id).subscribe({
                 next: constellation => {
                     console.log(constellation);
-                    new Snackbar('The ' + this.obj_type + ' was deleted successfully.', snackbar_msg)
+                    new Snackbar('The constellation was deleted successfully.', snackbar_msg)
                 },
                 error: error => {
                     console.error(error);
-                    new Snackbar('An error occurred when trying to delete the' + this.obj_type, snackbar_error)
+                    new Snackbar('An error occurred when trying to delete the constellation', snackbar_error)
                 }
             })
         }
