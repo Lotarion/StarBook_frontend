@@ -5,25 +5,26 @@
     <h1 class="form-label" *ngIf="star_id == 'new'">Record a new star</h1>
     <h1 class="form-label" *ngIf="star_id != 'new'">Edit star: {{ starForm.controls['name'].value }}</h1>
     <form class="star-form" [formGroup]="starForm" (ngSubmit)="SubmitStar()">
-        <label for="name">
+        <label for="name" class="field-label">
             <div class="param-label">Name:</div>
-            <input id="name" type="text" formControlName="name">
+            <input id="name" type="text" class="form-input" formControlName="name" maxlength="100">
         </label>
         <div class="error-msg" *ngIf="starForm.controls['name'].errors?.['required'] && submit_pressed">
             * Name is required
         </div>
-        <label for="right_ascension">
+        <label for="right_ascension" class="field-label">
             <div class="param-label">Right ascension:</div>
-            <input id="right_ascension" type="number" formControlName="right_ascension">
+            <input id="right_ascension" type="number" class="form-input" formControlName="right_ascension"
+                   maxlength="100">
             °, 0 — 360
         </label>
         <div class="error-msg" *ngIf="(starForm.controls['right_ascension'].errors?.['min'] ||
             starForm.controls['right_ascension'].errors?.['max']) && submit_pressed">
             * Right ascension must be between 0° and 360°
         </div>
-        <label for="declination">
+        <label for="declination" class="field-label">
             <div class="param-label">Declination:</div>
-            <input id="declination" type="number" formControlName="declination">
+            <input id="declination" type="number" class="form-input" formControlName="declination" maxlength="100">
             °, -90 — 90
         </label>
         <div class="error-msg" *ngIf="(starForm.controls['declination'].errors?.['min'] ||
@@ -34,36 +35,42 @@
             starForm.controls['declination'].errors?.['required']) && submit_pressed">
             * Coordinates are required
         </div>
-        <label for="diameter">
+        <label for="diameter" class="field-label">
             <div class="param-label">Diameter:</div>
-            <input id="diameter" type="number" formControlName="diameter">
+            <input id="diameter" type="number" class="form-input" formControlName="diameter" maxlength="100">
             D<sub>☉</sub>
         </label>
-        <label for="mass">
+        <label for="mass" class="field-label">
             <div class="param-label">Mass:</div>
-            <input id="mass" type="number" formControlName="mass">
+            <input id="mass" type="number" class="form-input" formControlName="mass" maxlength="100">
             M<sub>☉</sub>
         </label>
-        <label for="visible_size">
+        <label for="visible_size" class="field-label">
             <div class="param-label">Apparent magnitude:</div>
-            <input id="visible_size" type="number" formControlName="visible_size">
+            <input id="visible_size" type="number" class="form-input" formControlName="visible_size" maxlength="100">
         </label>
-        <label for="distance">
+        <label for="distance" class="field-label">
             <div class="param-label">Distance:</div>
-            <input id="distance" type="number" formControlName="distance">
+            <input id="distance" type="number" class="form-input" formControlName="distance" maxlength="100">
             l./y.
         </label>
-        <label for="absolute_magnitude">
+        <label for="absolute_magnitude" class="field-label">
             <div class="param-label">Absolute magnitude:</div>
-            <input id="absolute_magnitude" type="number" formControlName="absolute_magnitude">
+            <input id="absolute_magnitude" type="number" class="form-input" formControlName="absolute_magnitude"
+                   maxlength="100">
         </label>
-        <label for="spectral_class">
+        <label for="spectral_class" class="field-label">
             <div class="param-label">Spectral class:</div>
-            <input id="spectral_class" type="text" formControlName="spectral_class">
+            <input id="spectral_class" type="text" class="form-input" formControlName="spectral_class" maxlength="100">
+        </label>
+        <label class="field-label">
+            <div class="param-label">Constellation:</div>
+            <app-constellation-picker [constellation_id]="starForm.controls['constellation_id'].value"
+                                      (id_changed)="starForm.controls['constellation_id'].setValue($event)"></app-constellation-picker>
         </label>
         <div class="options">
             <button class="option save-button" type="submit">Save</button>
-            <button class="option cancel-button" type="button" (click)="cancelDialog()">Cancel</button>
+            <button class="option cancel-button" type="button" [routerLink]="['/']">Cancel</button>
         </div>
     </form>
 </section>

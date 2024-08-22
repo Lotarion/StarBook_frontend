@@ -3,6 +3,7 @@ import {DialogWrapperComponent} from "../dialog-wrapper/dialog-wrapper.component
 import {EarthPosition} from "../star";
 import {EarthPositionService} from "../earth-position.service";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {NgIf} from "@angular/common";
 
 @Component({
     selector: 'app-set-earth-position-dialog',
@@ -10,7 +11,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
     imports: [
         DialogWrapperComponent,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgIf
     ],
     templateUrl: './set-earth-position-dialog.component.html',
     styleUrl: './set-earth-position-dialog.component.css'

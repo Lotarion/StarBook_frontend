@@ -1,27 +1,31 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {PaginatedOutput, Pagination} from "./pagination";
 import {Constellation, ConstellationCreate, ConstellationUpdate} from "./constellation";
 import {api_base} from "./constants";
-import {addPaginationToHttpParams} from "./utils";
+import {of} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class ConstellationsService {
+    cache!: Constellation[]
+    cache_fresh: boolean = false
+
     constructor(private http: HttpClient) {
     }
 
-    read_constellations(pagination: Pagination) {
-        let parameters = addPaginationToHttpParams(pagination)
-        return this.http.get<PaginatedOutput>(`${api_base}constellation/`, {params: parameters})
+    set_cache(list: Constellation[]) {
+        this.cache = list;
+        this.cache_fresh = true;
     }
 
-    read_constellations_by_name(name: string, pagination: Pagination) {
-        let parameters = addPaginationToHttpParams(pagination)
-        parameters = parameters.append("name", name)
-        return this.http.get<PaginatedOutput>(`${api_base}constellation/by_name/`, {params: parameters})
+    read_constellations() {
+        if (this.cache_fresh) {
+            return of(this.cache)
+        } else {
+            return this.http.get<Constellation[]>(`${api_base}constellation/`)
+        }
     }
 
     read_constellation(constellation_id: string) {
@@ -29,14 +33,17 @@ export class ConstellationsService {
     }
 
     create_constellation(constellation: ConstellationCreate) {
+        this.cache_fresh = false;
         return this.http.post<Constellation>(`${api_base}constellation/`, constellation)
     }
 
     update_constellation(constellation: ConstellationUpdate) {
+        this.cache_fresh = false;
         return this.http.put<Constellation>(`${api_base}constellation/`, constellation)
     }
 
     delete_constellation(constellation_id: string) {
+        this.cache_fresh = false;
         return this.http.delete<Constellation>(`${api_base}constellation/${constellation_id}/`)
     }
 }

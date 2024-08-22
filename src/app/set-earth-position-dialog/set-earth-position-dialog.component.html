@@ -3,11 +3,19 @@
         <form class="dialog-form" [formGroup]="earthPositionForm" (ngSubmit)="setEarthPosition()">
             <label for="latitude">
                 <div class="param-label">Latitude</div>
-                <input class="dialog-field" type="number" id="latitude" formControlName="latitude">
+                <input class="dialog-field" type="number" id="latitude" formControlName="latitude" maxlength="100">
+                <div class="error-msg"
+                     *ngIf="earthPositionForm.controls['latitude'].errors?.['required'] && confirm_pressed">
+                    * Latitude is required
+                </div>
             </label>
             <label for="longitude">
                 <div class="param-label">Longitude</div>
-                <input class="dialog-field" type="number" id="longitude" formControlName="longitude">
+                <input class="dialog-field" type="number" id="longitude" formControlName="longitude" maxlength="100">
+                <div class="error-msg"
+                     *ngIf="earthPositionForm.controls['longitude'].errors?.['required'] && confirm_pressed">
+                    * Longitude is required
+                </div>
             </label>
             <label for="datetime-picker">
                 <div class="param-label"><i>Local</i> date and time</div>

@@ -4,10 +4,14 @@ import {StarsService} from "../stars.service";
 import {Star, StarCreate, StarUpdate} from "../star";
 import {TopBarComponent} from "../top-bar/top-bar.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import Snackbar from "awesome-snackbar/src/snackbar";
 import {snackbar_error, snackbar_msg} from "../constants";
-import {DialogService} from "../dialog.service";
+import {ConstellationsService} from "../constellations.service";
+import {Constellation} from "../constellation";
+import {EditConstellationDialogComponent} from "../edit-constellation-dialog/edit-constellation-dialog.component";
+import {DeleteEntryDialogComponent} from "../delete-entry-dialog/delete-entry-dialog.component";
+import {ConstellationPickerComponent} from "../constellation-picker/constellation-picker.component";
 
 @Component({
     selector: 'app-star-editor',
@@ -16,7 +20,11 @@ import {DialogService} from "../dialog.service";
         TopBarComponent,
         ReactiveFormsModule,
         NgIf,
-        RouterLink
+        RouterLink,
+        EditConstellationDialogComponent,
+        DeleteEntryDialogComponent,
+        NgForOf,
+        ConstellationPickerComponent
     ],
     templateUrl: './star-editor.component.html',
     styleUrl: './star-editor.component.css'
@@ -24,6 +32,7 @@ import {DialogService} from "../dialog.service";
 export class StarEditorComponent {
     submit_pressed: boolean = false;
     star_id: string;
+    constellations: Constellation[] = [];
     star: Object = {
         name: '',
         right_ascension: Number.NaN,
@@ -63,14 +72,15 @@ export class StarEditorComponent {
             Validators.min(0)
         ]),
         absolute_magnitude: new FormControl(''),
-        spectral_class: new FormControl('')
+        spectral_class: new FormControl(''),
+        constellation_id: new FormControl(''),
     });
 
     constructor(
         public starsService: StarsService,
+        public constellationsService: ConstellationsService,
         public route: ActivatedRoute,
         public router: Router,
-        public dialogService: DialogService,
     ) {
         this.star_id = route.snapshot.params['id'];
         if (this.star_id != "new") {
@@ -85,21 +95,14 @@ export class StarEditorComponent {
                 }
             })
         }
+
+        this.starForm.controls['constellation_id'].setValue('')
     }
 
     SetInputFields(star: Star) {
         this.starForm.patchValue(star)
-    }
-
-    cancelDialog() {
-        if (!this.starForm.pristine) {
-            this.dialogService.open({
-                message: "Are you sure you want to close without saving? All changes will be discarded",
-                cancelVisible: true,
-                confirmHandler: () => this.router.navigate(['../../'], {relativeTo: this.route})
-            })
-        } else {
-            this.router.navigate(['../../'], {relativeTo: this.route});
+        if (!this.starForm.controls['constellation_id'].value) {
+            this.starForm.controls['constellation_id'].setValue('')
         }
     }
 

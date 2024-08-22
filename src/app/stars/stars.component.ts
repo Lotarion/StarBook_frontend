@@ -40,6 +40,7 @@ export class StarsComponent implements OnChanges {
 
     constructor(public starService: StarsService, filterService: FilterService, earthPositionService: EarthPositionService) {
         this.readStars(this.pagination)
+
         this.filterSubscription = filterService.filter$.subscribe(filter => {
             if (filter) {
                 this.filter = filter;

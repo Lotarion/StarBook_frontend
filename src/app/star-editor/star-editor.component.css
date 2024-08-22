@@ -19,7 +19,7 @@
     background-color: var(--dark-accent-2);
 }
 
-.star-form input {
+.star-form .form-input {
     box-sizing: border-box;
     width: 650px;
     height: 40px;
@@ -33,7 +33,7 @@
     margin-right: 10px;
 }
 
-.star-form label {
+.star-form .field-label {
     color: white;
     font-size: 20px;
     display: flex;

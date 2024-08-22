@@ -4,6 +4,8 @@ import {FormsModule} from "@angular/forms";
 import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {StarFilter} from "../star";
 import {FilterService} from "../filter.service";
+import {Constellation} from "../constellation";
+import {ConstellationsService} from "../constellations.service";
 
 @Component({
     selector: 'app-set-filter-dialog',
@@ -21,6 +23,7 @@ import {FilterService} from "../filter.service";
 export class SetFilterDialogComponent {
     @ViewChild('wrapper') wrapper!: DialogWrapperComponent;
     filter: StarFilter;
+    constellations: Constellation[] = [];
     confirm_pressed = false;
     FILTER_PARAMS = {
         spectral_class: 'Spectral Class',
@@ -28,10 +31,11 @@ export class SetFilterDialogComponent {
         mass: 'Mass',
         distance: 'Distance',
         absolute_magnitude: 'Absolute magnitude',
-        visible_size: 'Apparent magnitude'
+        visible_size: 'Apparent magnitude',
+        constellation_id: 'Constellation'
     }
 
-    constructor(public filterService: FilterService) {
+    constructor(public filterService: FilterService, public constellationsService: ConstellationsService) {
         this.filter = {
             filter_by: 'spectral_class',
             filter_range: [0, 1]
@@ -39,6 +43,15 @@ export class SetFilterDialogComponent {
     }
 
     open() {
+        this.constellationsService.read_constellations().subscribe({
+            next: data => {
+                this.constellations = data;
+                this.constellationsService.set_cache(data)
+            },
+            error: error => {
+                console.error(error);
+            }
+        })
         this.filter = {
             filter_by: 'spectral_class',
             filter_range: [0, 1]
