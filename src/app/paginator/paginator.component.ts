@@ -1,4 +1,13 @@
-import {Component, Input, OnChanges, output, SimpleChanges} from '@angular/core';
+import {
+    AfterContentInit,
+    Component,
+    ElementRef,
+    Input,
+    OnChanges,
+    output,
+    SimpleChanges,
+    ViewChild
+} from '@angular/core';
 import {KeyValuePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {Pagination} from "../pagination";
 import {FormsModule} from "@angular/forms";
@@ -16,7 +25,9 @@ import {FormsModule} from "@angular/forms";
     templateUrl: './paginator.component.html',
     styleUrl: './paginator.component.css'
 })
-export class PaginatorComponent implements OnChanges {
+export class PaginatorComponent implements OnChanges, AfterContentInit {
+    @ViewChild('sortparam') sorting_params!: ElementRef;
+    @ViewChild('perpage') per_page!: ElementRef;
     @Input() total_objects!: number;
     total_pages!: number;
     start!: number
@@ -43,6 +54,12 @@ export class PaginatorComponent implements OnChanges {
     constructor() {
         this.UpdateStartEnd()
         this.UpdatePageStatus()
+    }
+
+    ngAfterContentInit() {
+        this.UpdateSortBy()
+        this.UpdatePerPage()
+        this.UpdatePagination()
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -81,15 +98,15 @@ export class PaginatorComponent implements OnChanges {
         }
     }
 
-    UpdatePerPage(value: string) {
-        this.pagination.per_page = parseInt(value)
+    UpdatePerPage() {
+        this.pagination.per_page = parseInt(this.per_page.nativeElement.value)
         this.FirstPage()
         this.UpdateTotalPages()
         this.UpdatePagination()
     }
 
-    UpdateSortBy(value: string) {
-        this.pagination.sorting_parameter = value
+    UpdateSortBy() {
+        this.pagination.sorting_parameter = this.sorting_params.nativeElement.value;
         this.UpdatePagination()
     }
 
